@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Finance Tracker (Naira Budget App)
 
-## Getting Started
+A simple personal finance tracker built with Next.js that lets you:
+- add income/expense transactions,
+- set monthly budgets by category,
+- see over/under budget status,
+- view spending distribution in a donut chart,
+- persist data in localStorage.
 
-First, run the development server:
+## Stack
+- Next.js (App Router)
+- React + TypeScript
+- Tailwind CSS
+- Recharts (for donut chart)
 
+## How To Run
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## What I Built And Why I Made Certain Choices
+1. Currency set to Naira (`NGN`, `en-NG`) so all amounts render in local format.
+Why: the app targets Nigerian usage and should display familiar money formatting.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. Basic budget flow:
+- budget input screen for per-category limits,
+- budget status panel showing spent vs budget,
+- helper text for over/under budget by amount.
+Why: gives immediate feedback and makes budgeting actionable, not just descriptive.
 
-## Learn More
+3. Modular overview screen:
+- `SpendingBreakdownCard`
+- `BudgetStatusCard`
+- `TransactionListCard`
+Why: easier maintenance, clearer ownership, and simpler future feature changes.
 
-To learn more about Next.js, take a look at the following resources:
+4. Replaced custom donut SVG with Recharts.
+Why: reduced manual chart logic and improved extensibility for tooltips/interaction.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+5. localStorage state management via a custom `useLocalStorage` hook.
+Why: lightweight persistence without backend setup.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## What I’d Improve With More Time
+1. Add form validation and friendly error states (invalid amounts, future/past date rules, etc.).
+2. Add transaction edit functionality and category-level filters.
+3. Add automated tests (unit + component) for finance calculations and critical UI flows.
+4. Add accessibility improvements (keyboard flows, aria messaging, contrast checks).
+5. Add optional backend sync/auth so data persists across devices.
 
-## Deploy on Vercel
+## Challenges I Faced
+1. Import alias/file-structure mismatches during setup.
+2. Tailwind/PostCSS scanner issues in dev environment.
+3. Keeping UI refactors clean while preserving behavior and styles.
+4. Ensuring old localStorage values did not override new Naira-oriented defaults.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Time Spent (Approximate)
+Around **5-7 hours** total, including setup fixes, refactors, chart integration, budget UX improvements, and cleanup.
