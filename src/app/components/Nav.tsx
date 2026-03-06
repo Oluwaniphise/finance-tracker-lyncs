@@ -1,5 +1,6 @@
 import { TABS } from "../lib/data";
-import { NavProps, TabId } from "../types";
+import { NavProps } from "../types";
+export type { TabId } from "../types";
 
 
 export function Nav({ active, onChange }: NavProps) {
