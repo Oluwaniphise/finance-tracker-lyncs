@@ -1,26 +1,42 @@
-@import "tailwindcss";
+@import "tailwindcss" source(none);
+@source "../**/*.{js,ts,jsx,tsx,mdx}";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Tailwind v4: extend theme inline */
+@theme {
+  --font-mono: "DM Mono", "Fira Mono", ui-monospace, monospace;
+
+  --color-bg:       #0d0d14;
+  --color-surface:  #111118;
+  --color-border:   #1e1e2e;
+  --color-muted:    #6b7280;
+  --color-subtle:   #4b5563;
+  --color-fg:       #f9fafb;
+
+  --color-indigo:   #6366f1;
+  --color-green:    #10b981;
+  --color-red:      #ef4444;
+  --color-amber:    #f59e0b;
+  --color-purple:   #8b5cf6;
+
+  --transition-duration-400: 400ms;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-fg);
+}
+
+/* Native date/select dark styling */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.5);
+  cursor: pointer;
+}
+
+select option {
+  background: #0d0d14;
+  color: #f9fafb;
 }
